@@ -14,6 +14,8 @@ All the above steps should be in one function called process_image()
 """
 
 # TODO: Import OpenCV
+import cv2
+import numpy as np
 
 
 # TODO: Edit this function
@@ -27,9 +29,19 @@ def hello_world():
 
 # TODO: Call process_image function.
 def main():
-    hello_world()
-    return
+    name = 'geisel.jpg'
+    
+    gray = cv2.imread(name, cv2.IMREAD_GRAYSCALE)
+    resize = cv2.resize(gray,None, fx=0.5, fy=0.5, interpolation=cv2.INTER_AREA)
+    height, width = resize.shape
+    print height, width
+    cv2.rectangle(resize,(50,100),(150,33),(255,255,255),3)
+    cv2.imshow('re',resize )
+    
+    cv2.imwrite('jun.jpg', resize)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
 
-
+    
 if(__name__ == '__main__'):
     main()
