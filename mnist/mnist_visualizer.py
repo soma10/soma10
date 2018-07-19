@@ -20,17 +20,18 @@ def _main(args):
 
         # TODO: Access the i'th image in x_train
         # Hint: x_train[0] is the 0'th element
-        img = #_________
+        img = cv2.imread(x_train, y_train) #_________
 
 
         label = str(y_train[i])
 
         # TODO: Use imshow to display the images
-        #__________
+        cv2.imshow('image', img)  # __________
 
         # This is required for the image to show up and 
         # it waits for a key to be pressed to continue
-        cv2.waitKey()
+        cv2.waitKey(0)
+        cv2.destroyAllWindows()
     
     
 if(__name__ == '__main__'):

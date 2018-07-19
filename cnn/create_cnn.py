@@ -42,15 +42,19 @@ Modify this code to write a LeNet with the following requirements:
     output 10-dimensional vector (This is specified through units.)
 """
 # TODO: Import other layers as necessary. (Conv2D, MaxPooling2D)
-from keras.layers import Input, Dense
+from keras.layers import Input, Dense, Conv2D, MaxPooling2D
 from keras.models import Model
 
 # TODO: Currently, sets input dimension to be 784x1. Change to 32x32x1
-inputs = Input(shape=(784,))
-
-# A layer instance is callable on a tensor, and returns a tensor
-x = Dense(64, activation='relu')(inputs)
-x = Dense(64, activation='relu')(x)
+inputs = Input(shape=(32, 32, 1))
+c1 = Conv2D(6, (5, 5), activation='sigmoid')(inputs)
+s2 = MaxPooling2D(pool_size(2, 2))(c1)
+c3 = Conv2D(16, (5, 5), activation='sigmoid')(s2)
+s4 = MaxPooling2D(pool_size(2, 2))(c3)
+c5 = Conv2D(120, (5, 5), activation='sigmoid')(s4)
+        # A layer instance is callable on a tensor, and returns a tensor
+x = Dense(84, activation='tanh')(c5)
+x1 = Dense(10, activation='softmax')(x)
 predictions = Dense(10, activation='softmax')(x)
 
 # This creates a model that includes the Input layer and three Dense layers
